@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+}
+
+.header {
+    position: fixed;
+    height: 52px;
+    min-width: 715px;
+    background-color: rgb(48, 49, 52);
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+#cant1 {
+    /* border: 1px solid red; */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cant1>.google-cant {
+    padding-top: 10px;
+}
+
+#cant2 {
+    /* border: 1px solid red; */
+    flex: 5;
+    display: flex;
+    padding: 10px 0;
+}
+
+#cant2>.form-grey {
+    background-color: rgb(95, 99, 104);
+    flex: 1;
+    display: flex;
+    border-radius: 16px;
+}
+
+.form-grey>.form-grey-child {
+    /* border: 1px solid red; */
+    flex: 1;
+    padding: 0 22px;
+    display: flex;
+    column-gap: 17px;
+}
+
+#input-text {
+    flex: 2;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+}
+
+#input-text>input {
+    width: 100%;
+    height: 23px;
+    background-color: rgb(95, 99, 104);
+    border: none;
+}
+
+#input-text>input:focus {
+    border: none;
+    outline: none;
+    color: white;
+}
+
+#mic {
+    display: flex;
+    align-items: center;
+    /* flex: 1; */
+    /* border: 1px solid red; */
+}
+
+#lens {
+    display: flex;
+    align-items: center;
+    /* flex: 1; */
+    /* border: 1px solid red; */
+}
+
+#search-icon {
+    display: flex;
+    align-items: center;
+    /* flex: 1; */
+    /* border: 1px solid red; */
+}
+
+#cant3 {
+    /* border: 1px solid red; */
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#cant3>.links {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    align-items: center;
+    padding: 0 24px;
+    column-gap: 20px;
+}
+
+#google-account>img {
+    border-radius: 50px;
+}
+
+.section {
+    background-color: rgb(31, 31, 31);
+    height: 500vh;
+}

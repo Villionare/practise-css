@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+}
+
+.container-header {
+    height: 70vh;
+    font-size: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between; /*horizontal alignment*/
+    border: 2px solid red;
+    align-content: flex-start;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    /* align-items: start; --this is used for vertical alignment*/ 
+}
+
+#first {
+    width: 120px;
+    background-color: blueviolet;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+#second {
+    width: 120px;
+    background-color: rgb(64, 226, 43);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#third {
+    width: 120px;
+    background-color: rgb(43, 214, 226);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fourth {
+    width: 120px;
+    background-color: rgb(226, 43, 58);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fifth {
+    width: 120px;
+    background-color: rgb(171, 226, 43);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sixth {
+    width: 120px;
+    background-color: rgb(70, 43, 226);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
