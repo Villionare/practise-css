@@ -10,6 +10,7 @@ body {
     width: 100vw;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #cant1 {
@@ -111,4 +112,18 @@ body {
 .section {
     background-color: rgb(31, 31, 31);
     height: 500vh;
+}
+
+@media only screen and (max-width: 715px) {
+    .header>.cant1 {
+        visibility: hidden;
+    }
+
+    #cant2 {
+        flex: 2;
+    }
+
+    #cant3 {
+        flex: 1;
+    }
 }
