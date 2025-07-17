@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 8px 15px;
+    column-gap: 15px;
+    row-gap: 15px;
+    background-color: rgb(148, 148, 148);
+}
+
+.nav-link-1 {
+    background-color: rgb(202, 202, 202);
+    flex-basis: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.nav-link-2,
+.nav-link-3,
+.nav-link-4 {
+    background-color: rgb(202, 202, 202);
+    flex-basis: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 7px;
+}
+
+.nav-link-5 {
+    background-color: rgb(202, 202, 202);
+    flex: 1;
+    border-radius: 7px;
+}
+
+.search-cant {
+    display: flex;
+}
+
+.search-cant>#input-text {
+    font-size: 2rem;
+    width: 100%;
+}
+
+.search-cant>#search-btn {
+    font-size: 2rem;
+}
+
+.nav-link-6 {
+    background-color: rgb(202, 202, 202);
+    flex-basis: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius: 7px;
+}
+
+
+.nav-link-7 {
+    background-color: rgb(202, 202, 202);
+    flex: 1 0 auto;
+}
+
+@media screen and (max-width: 800px) {
+    .nav {
+        flex-flow: row wrap;
+        padding: 5px 5px;
+        column-gap: 5px;
+        row-gap: 5px;
+        background-color: rgb(148, 148, 148);
+        /* height: 10vh; */
+        font-size: 1rem;
+    }
+
+    .nav-link-1 {
+        font-size: 1rem;
+        background-color: rgb(202, 202, 202);
+        display: flex;
+        width: 20vh;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        border-radius: 7px;
+        flex: 1;
+    }
+
+    .nav-link-2,
+    .nav-link-3,
+    .nav-link-4 {
+        font-size: 1rem;
+        background-color: rgb(202, 202, 202);
+        flex-basis: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7px;
+        order: 3;
+    }
+
+    .nav-link-5 {
+        background-color: rgb(202, 202, 202);
+        font-size: 1rem;
+        border-radius: 7px;
+        flex: 0;
+        display: flex;
+    }
+
+    .nav-link-5>#input-text {}
+
+    .nav-link-5>#search-btn {}
+
+    #search-btn>span {}
+
+    .nav-link-6 {
+        font-size: 1rem;
+        background-color: rgb(202, 202, 202);
+        flex-basis: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7px;
+        order: 4;
+    }
+
+
+    .nav-link-7 {
+        flex: 0;
+        display: none;
+    }
+}
