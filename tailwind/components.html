@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comprehensive Tailwind Webpage</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Optional: Google Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons (e.g., search, social media) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden; /* Prevent horizontal scroll when sidebar is out of view */
+      }
+      /* Custom CSS for smooth sidebar transitions */
+      .sidebar {
+        transition: transform 0.3s ease-in-out;
+        /* On small screens, sidebar overlays. On medium+, it pushes content. */
+        transform: translateX(
+          -100%
+        ); /* Initially hide the sidebar off-screen */
+      }
+      .sidebar.open {
+        transform: translateX(0); /* Slide sidebar into view */
+      }
+      .content-area {
+        transition: margin-left 0.3s ease-in-out;
+      }
+      /* Only shift content on medium screens and larger when sidebar is open */
+      @media (min-width: 768px) {
+        /* md breakpoint */
+        .content-area.shifted {
+          margin-left: 16rem; /* Match sidebar width (w-64) */
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Component: Header -->
+    <header
+      class="bg-white shadow-md p-4 flex items-center justify-between sticky top-0 z-40"
+    >
+      <!-- Website Logo -->
+      <div class="flex items-center">
+        <button
+          id="navbarToggle"
+          class="p-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 mr-4"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+        <a href="#" class="text-3xl font-bold text-gray-800">YourLogo</a>
+      </div>
+
+      <!-- Component: Navigation Menu (Desktop) -->
+      <nav class="hidden md:flex space-x-6">
+        <a
+          href="#home"
+          class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+          >Home</a
+        >
+        <a
+          href="#features"
+          class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+          >Features</a
+        >
+        <a
+          href="#services"
+          class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+          >Services</a
+        >
+        <a
+          href="#contact"
+          class="text-gray-600 hover:text-blue-600 font-medium transition duration-300"
+          >Contact</a
+        >
+      </nav>
+
+      <!-- Search Bar & CTA (Header) -->
+      <div class="flex items-center space-x-4">
+        <div class="relative hidden sm:block">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <i
+            class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          ></i>
+        </div>
+        <!-- Component: Calls to Action (Header) -->
+        <a
+          href="#signup"
+          class="hidden md:block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300 shadow-md"
+          >Sign Up</a
+        >
+      </div>
+    </header>
+
+    <!-- Component: Vertical Navigation Menu (Sidebar) -->
+    <!-- <aside
+      id="sidebar"
+      class="sidebar fixed top-0 left-0 h-100 w-30 bg-gray-800 text-white shadow-lg z-50 md:sticky md:translate-x-0 md:flex-shrink-0 md:w-64 md:block hidden"
+    >
+      <div class="p-6 text-center border-b border-gray-700">
+        <h2 class="text-xl font-bold">Navigation</h2>
+      </div>
+      <nav class="mt-6">
+        <ul>
+          <li>
+            <a
+              href="#home"
+              class="flex items-center p-4 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2 my-1 transition duration-200"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                ></path>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#features"
+              class="flex items-center p-4 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2 my-1 transition duration-200"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m7 0V5a2 2 0 012-2h2a2 2 0 012 2v6m-6 0V5a2 2 0 00-2-2H9a2 2 0 00-2 2v6"
+                ></path>
+              </svg>
+              Features
+            </a>
+          </li>
+          <li>
+            <a
+              href="#services"
+              class="flex items-center p-4 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2 my-1 transition duration-200"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+              Pricing
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="flex items-center p-4 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md mx-2 my-1 transition duration-200"
+            >
+              <svg
+                class="w-5 h-5 mr-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                ></path>
+              </svg>
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside> -->
+
+    <!-- Main Content Area -->
+    <div class="flex flex-1">
+      <main id="contentArea" class="content-area flex-1 p-8 md:ml-0">
+        <!-- Component: Hero Section -->
+        <section
+          id="home"
+          class="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20 px-8 rounded-lg shadow-xl mb-12 overflow-hidden"
+        >
+          <!-- Visual Element: Background Image/Pattern -->
+          <img
+            src="https://placehold.co/1200x600/4a90e2/ffffff?text=Awesome+Hero+Image"
+            alt="Abstract background pattern"
+            class="absolute inset-0 w-full h-full object-cover opacity-20"
+          />
+          <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <!-- Component: Typography (Headline) -->
+            <h1
+              class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 animate-fade-in-up"
+            >
+              Unlock Your Potential with Our Amazing Platform
+            </h1>
+            <p
+              class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200"
+            >
+              Discover innovative solutions designed to streamline your workflow
+              and boost productivity.
+            </p>
+            <!-- Component: Calls to Action (Hero) -->
+            <a
+              href="#signup"
+              class="bg-white text-blue-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition duration-300 shadow-lg inline-block animate-zoom-in delay-400"
+            >
+              Get Started Today
+            </a>
+          </div>
+        </section>
+
+        <!-- Component: Body Content - Features Section -->
+        <section
+          id="features"
+          class="py-12 bg-white rounded-lg shadow-md mb-12 px-8"
+        >
+          <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">
+            Key Features
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature Card 1 -->
+            <div
+              class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            >
+              <!-- Visual Element: Icon -->
+              <i class="fas fa-cogs text-blue-500 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Easy Customization
+              </h3>
+              <p class="text-gray-600">
+                Tailor our platform to your exact needs with highly flexible and
+                intuitive customization options.
+              </p>
+            </div>
+            <!-- Feature Card 2 -->
+            <div
+              class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            >
+              <!-- Visual Element: Icon -->
+              <i class="fas fa-chart-line text-green-500 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Advanced Analytics
+              </h3>
+              <p class="text-gray-600">
+                Gain deep insights into your data with powerful and
+                easy-to-understand analytics tools.
+              </p>
+            </div>
+            <!-- Feature Card 3 -->
+            <div
+              class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            >
+              <!-- Visual Element: Icon -->
+              <i class="fas fa-shield-alt text-purple-500 text-4xl mb-4"></i>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Top-tier Security
+              </h3>
+              <p class="text-gray-600">
+                Your data is safe with us. We employ the latest security
+                protocols to ensure maximum protection.
+              </p>
+              <!-- Component: Security Features (Mention) -->
+              <p class="text-xs text-gray-500 mt-2">
+                *(Note: Actual security features are server-side
+                implementations.)*
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Component: Body Content - About Us Section -->
+        <section class="py-12 bg-white rounded-lg shadow-md mb-12 px-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="md:order-2">
+              <!-- Visual Element: Image -->
+              <img
+                src="https://placehold.co/600x400/87CEEB/ffffff?text=Team+Collaboration"
+                alt="Team working together"
+                class="rounded-lg shadow-lg w-full h-auto"
+              />
+            </div>
+            <div class="md:order-1">
+              <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                About Our Mission
+              </h2>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                We are dedicated to providing innovative solutions that empower
+                businesses and individuals to achieve their goals. Our team is
+                passionate about creating user-friendly and powerful tools that
+                make a real difference.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                From robust features to intuitive design, every aspect of our
+                platform is crafted with you in mind. We believe in continuous
+                improvement and are always striving to deliver the best possible
+                experience.
+              </p>
+              <!-- Component: Calls to Action -->
+              <a
+                href="#contact"
+                class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 shadow-md"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Component: Body Content - Services Section -->
+        <section
+          id="services"
+          class="py-12 bg-white rounded-lg shadow-md mb-12 px-8"
+        >
+          <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">
+            Our Services
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Service Card 1 -->
+            <div
+              class="flex flex-col md:flex-row bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 items-center"
+            >
+              <!-- Visual Element: Icon -->
+              <i
+                class="fas fa-laptop-code text-blue-500 text-5xl md:mr-6 mb-4 md:mb-0"
+              ></i>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  Web Development
+                </h3>
+                <p class="text-gray-600">
+                  Crafting modern, responsive, and high-performance websites
+                  tailored to your business needs.
+                </p>
+              </div>
+            </div>
+            <!-- Service Card 2 -->
+            <div
+              class="flex flex-col md:flex-row bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 items-center"
+            >
+              <!-- Visual Element: Icon -->
+              <i
+                class="fas fa-mobile-alt text-green-500 text-5xl md:mr-6 mb-4 md:mb-0"
+              ></i>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  Mobile App Development
+                </h3>
+                <p class="text-gray-600">
+                  Building intuitive and engaging mobile applications for iOS
+                  and Android platforms.
+                </p>
+              </div>
+            </div>
+            <!-- Service Card 3 -->
+            <div
+              class="flex flex-col md:flex-row bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 items-center"
+            >
+              <!-- Visual Element: Icon -->
+              <i
+                class="fas fa-cloud text-purple-500 text-5xl md:mr-6 mb-4 md:mb-0"
+              ></i>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  Cloud Solutions
+                </h3>
+                <p class="text-gray-600">
+                  Leveraging cloud technologies to scale your infrastructure and
+                  enhance operational efficiency.
+                </p>
+              </div>
+            </div>
+            <!-- Service Card 4 -->
+            <div
+              class="flex flex-col md:flex-row bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition duration-300 items-center"
+            >
+              <!-- Visual Element: Icon -->
+              <i
+                class="fas fa-bullhorn text-red-500 text-5xl md:mr-6 mb-4 md:mb-0"
+              ></i>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                  Digital Marketing
+                </h3>
+                <p class="text-gray-600">
+                  Driving growth and visibility with data-driven digital
+                  marketing strategies.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Component: Calls to Action -->
+          <div class="text-center mt-10">
+            <a
+              href="#contact"
+              class="inline-block bg-purple-600 text-white px-8 py-4 rounded-full text-lg hover:bg-purple-700 transition duration-300 shadow-lg"
+            >
+              View All Services
+            </a>
+          </div>
+        </section>
+
+        <!-- Component: Calls to Action (Final CTA) -->
+        <section
+          id="contact"
+          class="bg-blue-700 text-white py-16 px-8 rounded-lg shadow-xl text-center mb-12"
+        >
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Get Started?
+          </h2>
+          <p class="text-lg mb-8 opacity-90">
+            Join thousands of satisfied customers and transform your business
+            today.
+          </p>
+          <a
+            href="#"
+            class="bg-white text-blue-700 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition duration-300 shadow-lg inline-block"
+          >
+            Contact Us Now
+          </a>
+        </section>
+      </main>
+    </div>
+
+    <!-- Component: Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-10 px-8">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-4">YourLogo</h3>
+          <p class="text-sm leading-relaxed">
+            Building the future of digital experiences, one pixel at a time.
+          </p>
+          <!-- Component: Security Features (Visual Indicator) -->
+          <div class="flex items-center mt-4 text-green-400">
+            <i class="fas fa-lock mr-2"></i>
+            <span class="text-sm">Secure Connection</span>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-4">Quick Links</h3>
+          <!-- Component: Clear Navigation (Footer Links) -->
+          <ul class="space-y-2">
+            <li>
+              <a href="#home" class="hover:text-white transition duration-200"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#features"
+                class="hover:text-white transition duration-200"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a
+                href="#services"
+                class="hover:text-white transition duration-200"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="hover:text-white transition duration-200"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-white transition duration-200"
+                >Privacy Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-white mb-4">Connect With Us</h3>
+          <p class="text-sm mb-4">Email: info@yourcompany.com</p>
+          <p class="text-sm mb-4">Phone: +1 (123) 456-7890</p>
+          <!-- Component: Visual Elements (Social Media Icons) -->
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-facebook-f text-xl"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-twitter text-xl"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-linkedin-in text-xl"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-instagram text-xl"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+        <!-- Component: Footer (Copyright) -->
+        &copy; 2025 YourCompany. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- Component: Interactive Elements (JavaScript for Navbar Toggle) -->
+    <script>
+      const navbarToggle = document.getElementById("navbarToggle");
+      const sidebar = document.getElementById("sidebar");
+      const contentArea = document.getElementById("contentArea");
+
+      function toggleSidebar() {
+        sidebar.classList.toggle("open");
+        // Only shift content area on medium screens and larger
+        if (window.innerWidth >= 768) {
+          // md breakpoint
+          contentArea.classList.toggle("shifted");
+        }
+      }
+
+      navbarToggle.addEventListener("click", toggleSidebar);
+
+      // Close sidebar when a link is clicked (for mobile overlay)
+      sidebar.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (sidebar.classList.contains("open") && window.innerWidth < 768) {
+            toggleSidebar(); // Close sidebar on mobile after clicking a link
+          }
+        });
+      });
+
+      // Handle resize: If resized to desktop, ensure sidebar is visible and content shifted
+      // If resized to mobile, ensure sidebar is hidden and content not shifted
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+          // md breakpoint
+          sidebar.classList.remove("open"); // Ensure sidebar is not 'overlay' state
+          sidebar.classList.remove("hidden"); // Ensure sidebar is visible
+          contentArea.classList.add("shifted"); // Ensure content is shifted
+        } else {
+          sidebar.classList.add("hidden"); // Hide sidebar initially on mobile
+          sidebar.classList.remove("open"); // Ensure it's not open
+          contentArea.classList.remove("shifted"); // Ensure content is not shifted
+        }
+      });
+
+      // Initial check on load for desktop view
+      window.onload = () => {
+        if (window.innerWidth >= 768) {
+          // md breakpoint
+          sidebar.classList.remove("hidden"); // Show sidebar by default on desktop
+          contentArea.classList.add("shifted"); // Shift content on desktop
+        } else {
+          sidebar.classList.add("hidden"); // Hide sidebar on mobile
+        }
+      };
+    </script>
+  </body>
+</html>
